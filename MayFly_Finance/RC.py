@@ -9,23 +9,31 @@ def RS(nu, de, start, end, step, trial):
     from IPython.display import display
     yfin.pdr_override()
 
-    # Getting Time
+    # Getting Time and Organizing index
     if start == 'begin' and end == 'now':
-        df_nu = pdr.get_data_yahoo(nu)
-        df_de = pdr.get_data_yahoo(de)
+      df_nu = pdr.get_data_yahoo(nu)
+      df_nu = df_nu.reset_index()
+      begin_date = df_nu['Date'][0]
+      df_de = pdr.get_data_yahoo(de, start = begin_date)
+      df_de = df_de.reset_index()
     elif start == 'begin' and end != 'now':
-        df_nu = pdr.get_data_yahoo(nu, end=end)
-        df_de = pdr.get_data_yahoo(de, end=end)
+      df_nu = pdr.get_data_yahoo(nu, end=end)
+      df_nu = df_nu.reset_index()
+      begin_date = df_nu['Date'][0]
+      df_de = pdr.get_data_yahoo(de, start = begin_date, end=end)
+      df_de = df_de.reset_index()
     elif start != 'begin' and end == 'now':
-        df_nu = pdr.get_data_yahoo(nu, start=start)
-        df_de = pdr.get_data_yahoo(de, start=start)
+      df_nu = pdr.get_data_yahoo(nu, start=start)
+      df_de = pdr.get_data_yahoo(de, start=start)
+      df_nu = df_nu.reset_index()
+      df_de = df_de.reset_index()
     else:
-        df_nu = pdr.get_data_yahoo(nu, start=start, end=end)
-        df_de = pdr.get_data_yahoo(de, start=start, end=end)
+      df_nu = pdr.get_data_yahoo(nu, start=start, end=end)
+      df_de = pdr.get_data_yahoo(de, start=start, end=end)
+      df_nu = df_nu.reset_index()
+      df_de = df_de.reset_index()
 
-    # Organiziang index
-    df_nu = df_nu.reset_index()
-    df_de = df_de.reset_index()
+    # Show me latest data
     latest = df_nu['Close'].tail(3)
     display(latest)
 
