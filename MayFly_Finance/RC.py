@@ -113,4 +113,4 @@ def RS(nu, de, start, end, step, trial):
     plt.axis('tight')
     plt.legend()
     canvas.tight_layout()
-    return plt.show()
+    plt.show()
