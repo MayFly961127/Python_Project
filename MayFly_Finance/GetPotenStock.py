@@ -53,4 +53,5 @@ for j in range(m):
   print(k,'%')
 
 df_PotenStock = pd.DataFrame({'Stock': stock, 'Close': close, 'Porb': prob})
-df_PotenStock.to_csv('Potential_Stock')
+file_name = input("Decide your csv file name ")
+df_PotenStock.to_csv(file_name)
