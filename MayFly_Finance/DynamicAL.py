@@ -20,7 +20,7 @@ class Stock(object):
   def __str__(self):
     return self.name + ': <' + str(self.value) + ', ' + str(self.prices) + '>'
 
-def buildMenu(names, values, calories):
+def buildMenu(names, values, prices):
   menu = []
   for i in range(len(values)):
     menu.append(Stock(names[i], values[i], prices[i]))
