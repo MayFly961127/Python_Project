@@ -28,13 +28,13 @@ def buildMenu(names, values, prices):
 
 def maxVal_fast(toConsider, avail, memo = {}):
   """Assume toConsider a list of items, avail a weight
-Returns a tuple of the total value of a solution to 0/1 knapsack problem 
-and the items of that solution"""
-
+  Returns a tuple of the total value of a solution to 0/1 knapsack problem 
+  and the items of that solution"""
   if (len(toConsider), avail) in memo:
-    return memo[len(toConsider), avail]
+    return memo[(len(toConsider), avail)]
+
   elif toConsider == [] or avail == []:
-    result = (0,())
+    result = (0, ())
   elif toConsider[0].getCost() > avail:
     #Explore right branch only
     result = maxVal_fast(toConsider[1:], avail)
@@ -42,9 +42,9 @@ and the items of that solution"""
     nextItem = toConsider[0]
     #Explore left branch
     withVal, withToTake = maxVal_fast(toConsider[1:],
-                                      avail - nextItem.getCost())
+                                avail - nextItem.getCost())
     withVal += nextItem.getValue()
-    #Explore right brach
+    #Explore right branch
     withoutVal, withoutToTake = maxVal_fast(toConsider[1:], avail)
 
     #Choose better branch
@@ -52,11 +52,11 @@ and the items of that solution"""
       result = (withVal, withToTake + (nextItem,))
     else:
       result = (withoutVal, withoutToTake)
-    memo[(len(toConsider), avail)] = result
-    return result
+  memo[(len(toConsider), avail)] = result
+  return result
   
-def textmaxVal_fast(stocks, maxUnits, printItems = True):
-  print('Use search tree to allocate', maxUnits, 'prices')
+def testmaxVal_fast(stocks, maxUnits, printItems = True):
+  print('Use search tree to allocate', maxUnits, 'dollars')
   val, taken = maxVal_fast(foods, maxUnits)
   print('Total Value is ', val)
   if printItems:
