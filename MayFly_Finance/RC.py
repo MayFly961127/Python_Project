@@ -32,7 +32,6 @@ def RS(nu, de, start, end, step, trial):
       df_de = pdr.get_data_yahoo(de, start=start, end=end)
       df_nu = df_nu.reset_index()
       df_de = df_de.reset_index()
-    print(len(df_nu), len(df_de))
     
     # Show me latest data
     latest = df_nu['Close'].tail(3)
@@ -122,4 +121,4 @@ def RS(nu, de, start, end, step, trial):
     plt.axis('tight')
     plt.legend()
     canvas.tight_layout()
-    return(plt.show())
+    return plt.show()
