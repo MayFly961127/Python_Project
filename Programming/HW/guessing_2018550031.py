@@ -31,34 +31,35 @@ def try_again(answer):
                     again = input("Congrats!!, Do you wanna try again? y/n ")
                     try_again(again)
                     break
-                elif guess > answer:
-                    if guess > 2*answer:
-                        print("Your guess:" + str(guess) + " is too high")
-                        ask = input("You are wrong, do you want a hint?? y/n ")
-                        if ask.lower() == 'y':
-                            print("Hint: the Average between the answer and your guess is", avg)
-                            if i == n_trial - 1:
-                                print('-------------------------------------------------------')
-                                print("Bruh... It was your last chance, the hint is meaningless")
-                                break
-                    else:
-                        print("You are wrong. It is a bit high")
-                elif guess < answer:
-                    print("Your guess:" + str(guess) + " is too low")
-                    if guess < answer/2:
-                        ask = input("You are wrong, do you want a hint?? y/n ")
-                        if ask.lower() == 'y':
-                            print("Hint: the Average between the answer and your guess is", avg)
-                            if i == n_trial - 1:
-                                print('-------------------------------------------------------')
-                                print("Bruh... It was your last chance, the hint is meaningless")
-                                break
-                    else:
-                        print("You are wrong. It is a bit low")
-            print('-------------------------')
-            print('You lost all your chances. Just get a hint next time')
-            answer = input("Do you want to try again? y/n ")
-            try_again(answer.lower())
+                else:
+                    if guess > answer:
+                        if guess > 2*answer:
+                            print("Your guess:" + str(guess) + " is too high")
+                            ask = input("You are wrong, do you want a hint?? y/n ")
+                            if ask.lower() == 'y':
+                                print("Hint: the Average between the answer and your guess is", avg)
+                                if i == n_trial - 1:
+                                    print('-------------------------------------------------------')
+                                    print("Bruh... It was your last chance, the hint is meaningless")
+                                    break
+                        else:
+                            print("You are wrong. It is a bit high")
+                    elif guess < answer:
+                        print("Your guess:" + str(guess) + " is too low")
+                        if guess < answer/2:
+                            ask = input("You are wrong, do you want a hint?? y/n ")
+                            if ask.lower() == 'y':
+                                print("Hint: the Average between the answer and your guess is", avg)
+                                if i == n_trial - 1:
+                                    print('-------------------------------------------------------')
+                                    print("Bruh... It was your last chance, the hint is meaningless")
+                                    break
+                        else:
+                            print("You are wrong. It is a bit low")
+                print('-------------------------')
+                print('You lost all your chances. Just get a hint next time')
+                answer = input("Do you want to try again? y/n ")
+                try_again(answer.lower())
         except ValueError:
             sarcastic = ('idiot', 'moron', 'dumb', 'stupid', 'asshole', 'fool', 'twit')
             j = np.random.randint(0,len(sarcastic))
@@ -73,38 +74,39 @@ try:
         guess = int(input("Please type from 0 to 100: "))
         avg = int((guess + answer)/2)
         if guess == answer:
+            print("You won")
             again = input("Congrats!!, Do you wanna try again? y/n ")
             try_again(again)
-            print("You won")
             break
-        elif guess > answer:
-            if guess > 2*answer:
-                print("Your guess:" + str(guess) + " is too high")
-                ask = input("You are wrong, do you want a hint?? y/n ")
-                if ask.lower() == 'y':
-                    if i == n_trial -1:
-                        print('-------------------------------------------------------')
-                        print("Bruh... It was your last chance, the hint is meaningless")
-                        break
-                    print("Hint: the Average between the answer and your guess is", avg)
-            else:
-                print("You are wrong.", str(guess)  ,"is a bit high")
-        elif guess < answer:
-            if guess < answer/2:
-                print("Your guess:" + str(guess) + " is too low")
-                ask = input("You are wrong, do you want a hint?? y/n ")
-                if ask.lower() == 'y':
-                    if i == n_trial -1:
-                        print('-------------------------------------------------------')
-                        print("Bruh... It was your last chance, the hint is meaningless")
-                        break
-                    print("Hint: the Average between the answer and your guess is", avg)
-            else:
-                print("You are wrong.", str(guess)  ,"is a bit low")
-    print('-------------------------')
-    print('You lost all your chances. Just get a hint next time')
-    answer = input("Do you want to try again? y/n ")
-    try_again(answer.lower())
+        else:
+            if guess > answer:
+                if guess > 2*answer:
+                    print("Your guess:" + str(guess) + " is too high")
+                    ask = input("You are wrong, do you want a hint?? y/n ")
+                    if ask.lower() == 'y':
+                        if i == n_trial -1:
+                            print('-------------------------------------------------------')
+                            print("Bruh... It was your last chance, the hint is meaningless")
+                            break
+                        print("Hint: the Average between the answer and your guess is", avg)
+                else:
+                    print("You are wrong.", str(guess)  ,"is a bit high")
+            elif guess < answer:
+                if guess < answer/2:
+                    print("Your guess:" + str(guess) + " is too low")
+                    ask = input("You are wrong, do you want a hint?? y/n ")
+                    if ask.lower() == 'y':
+                        if i == n_trial -1:
+                            print('-------------------------------------------------------')
+                            print("Bruh... It was your last chance, the hint is meaningless")
+                            break
+                        print("Hint: the Average between the answer and your guess is", avg)
+                else:
+                    print("You are wrong.", str(guess)  ,"is a bit low")
+        print('-------------------------')
+        print('You lost all your chances. Just get a hint next time')
+        answer = input("Do you want to try again? y/n ")
+        try_again(answer.lower())
 except ValueError:
     sarcastic = ('idiot', 'moron', 'dumb', 'stupid', 'asshole', 'fool', 'twit')
     j = np.random.randint(0,len(sarcastic))
