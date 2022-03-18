@@ -57,7 +57,7 @@ def maxVal_fast(toConsider, avail, memo = {}):
   
 def testmaxVal_fast(stocks, maxUnits, printItems = True):
   print('Use search tree to allocate', maxUnits, 'dollars')
-  val, taken = maxVal_fast(foods, maxUnits)
+  val, taken = maxVal_fast(stocks, maxUnits)
   print('Total Value is ', val)
   if printItems:
     for item in taken:
