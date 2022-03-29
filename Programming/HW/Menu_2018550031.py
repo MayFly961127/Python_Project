@@ -27,12 +27,17 @@ def edit_menu(menu):
     print('Your menu is updated')
     return menu
 
+
 def Build_menu(num):
     """Please input the number items you will sell then following processes will begin soon.
     Don't worry about the difficulty it has very straightforward and intuitive processes"""
+    import re
     menu = [[], []]  # 0th row is menu, and 1th is price
     for i in range(num):
         product = input("Input item you will sell ")
+        product = re.sub('[!@#$%^&*()]','',product)
+        product = product.title()
+        product = product.strip()
         price = int(input(f"Input price of '{product}' "))  # prices are int
         menu[0].append(product)
         menu[1].append(price)
@@ -56,4 +61,4 @@ my_menu = Build_menu(trial)
 my_menu = sort_menu(my_menu)
 my_menu = pd.DataFrame({'Items': my_menu[0], 'Prices': my_menu[1]})
 display(my_menu)
-print("*Important: if you want to eidt or update your menu please call 'edit_menu'")
+print("*Important: if you want to eidt or update your menu please call the module 'edit_menu' with 'my_menu'")

@@ -3,11 +3,15 @@ import pandas as pd
 import yfinance as yfin
 import pandas_datareader as pdr
 import matplotlib.pyplot as plt
-def Trend_Dev(stock, step, step_sub, step_sub_sub):
+def Trend_Dev(index, stock, step, step_sub, step_sub_sub):
     # stock = input("Enter the ACT symbol of the stock ")
     # step = int(input("Enter the months for trend Dev "))
     # step_sub = int(input("Enter the sub months for trend Dev "))
     # step_sub_sub = int(input("Enter the MV for the trend Dev "))
+    list_index = ['Dow','^DJI',
+                  '\nS&P','GSPC',
+                  '\nNAS','^IXIC']
+    print(list_index)
     print('Trend_dv_dn ', step)
     print('Trend_dv_nu ', step_sub)
     print('Trend_dv_MV', step_sub_sub)
@@ -23,11 +27,12 @@ def Trend_Dev(stock, step, step_sub, step_sub_sub):
         return mv_stock
 
     yfin.pdr_override()
+    index_choosen = index
     df_SOFI = pdr.get_data_yahoo(stock, start = '1900-01-01')
     df_SOFI = df_SOFI.reset_index()
     Date_latest_stock = df_SOFI['Date']
     Date_latest_stock = Date_latest_stock.to_numpy()[0]
-    df_SP = pdr.get_data_yahoo('^IXIC', start = Date_latest_stock)
+    df_SP = pdr.get_data_yahoo(index_choosen, start = Date_latest_stock)
     df_SP = df_SP.reset_index()
     if len(df_SOFI) > len(df_SP):
         df_SOFI = df_SOFI[-len(df_SP):]
